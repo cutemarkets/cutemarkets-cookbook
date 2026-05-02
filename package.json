@@ -1,0 +1,14 @@
+{
+  "name": "cutemarkets-cookbook",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Runnable recipes for using CuteMarkets options data in Python and TypeScript.",
+  "type": "module",
+  "scripts": {
+    "ts:options-chain-scanner": "tsx typescript/options-chain-scanner/scanner.ts",
+    "ts:earnings-implied-move": "tsx typescript/earnings-implied-move/earnings_implied_move.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.6"
+  }
+}
