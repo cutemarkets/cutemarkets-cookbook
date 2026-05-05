@@ -1,0 +1,60 @@
+{
+  "recipes": [
+    {
+      "name": "options-chain-scanner",
+      "language": "python",
+      "path": "python/options-chain-scanner/scanner.py",
+      "required_env": ["CUTEMARKETS_API_KEY"],
+      "output_kind": "console_table"
+    },
+    {
+      "name": "historical-contract-reconstruction",
+      "language": "python",
+      "path": "python/historical-contract-reconstruction/historical_contracts_as_of.py",
+      "required_env": ["CUTEMARKETS_API_KEY"],
+      "output_kind": "console_rows"
+    },
+    {
+      "name": "earnings-implied-move",
+      "language": "python",
+      "path": "python/earnings-implied-move/earnings_implied_move.py",
+      "required_env": ["CUTEMARKETS_API_KEY"],
+      "output_kind": "json_row"
+    },
+    {
+      "name": "quote-quality-filter",
+      "language": "python",
+      "path": "python/quote-quality-filter/quote_quality_filter.py",
+      "required_env": ["CUTEMARKETS_API_KEY"],
+      "output_kind": "json_summary"
+    },
+    {
+      "name": "quote-coverage-audit",
+      "language": "python",
+      "path": "python/quote-coverage-audit/quote_coverage_audit.py",
+      "required_env": ["CUTEMARKETS_API_KEY"],
+      "output_kind": "json_summary"
+    },
+    {
+      "name": "earnings-event-study",
+      "language": "python",
+      "path": "python/earnings-event-study/earnings_event_study.py",
+      "required_env": ["CUTEMARKETS_API_KEY"],
+      "output_kind": "json_row"
+    },
+    {
+      "name": "options-chain-scanner",
+      "language": "typescript",
+      "path": "typescript/options-chain-scanner/scanner.ts",
+      "required_env": ["CUTEMARKETS_API_KEY"],
+      "output_kind": "console_table"
+    },
+    {
+      "name": "earnings-implied-move",
+      "language": "typescript",
+      "path": "typescript/earnings-implied-move/earnings_implied_move.ts",
+      "required_env": ["CUTEMARKETS_API_KEY"],
+      "output_kind": "json_row"
+    }
+  ]
+}

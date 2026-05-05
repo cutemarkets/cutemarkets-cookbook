@@ -1,27 +1,13 @@
-const apiKey = process.env.CUTEMARKETS_API_KEY;
-if (!apiKey) {
-  throw new Error("Set CUTEMARKETS_API_KEY=cm_... before running this recipe.");
-}
+import { CuteMarketsClient } from "cutemarkets-typescript";
 
-const baseUrl = process.env.CUTEMARKETS_BASE_URL ?? "https://api.cutemarkets.com";
 const ticker = process.env.CUTEMARKETS_UNDERLYING ?? "SPY";
 
-type ChainRow = {
+function spreadPct(contract: {
   open_interest?: number;
   implied_volatility?: number;
-  details?: {
-    ticker?: string;
-    expiration_date?: string;
-    strike_price?: number;
-    contract_type?: string;
-  };
-  last_quote?: {
-    bid?: number;
-    ask?: number;
-  };
-};
-
-function spreadPct(contract: ChainRow): number | null {
+  details?: { ticker?: string; expiration_date?: string; strike_price?: number };
+  last_quote?: { bid?: number; ask?: number };
+}): number | null {
   const bid = contract.last_quote?.bid;
   const ask = contract.last_quote?.ask;
   if (bid === undefined || ask === undefined) {
@@ -34,22 +20,14 @@ function spreadPct(contract: ChainRow): number | null {
   return (ask - bid) / mid;
 }
 
-const url = new URL(`${baseUrl.replace(/\/+$/, "")}/v1/options/chain/${encodeURIComponent(ticker)}/`);
-url.searchParams.set("contract_type", "call");
-url.searchParams.set("limit", "100");
-
-const response = await fetch(url, {
-  headers: {
-    Accept: "application/json",
-    Authorization: `Bearer ${apiKey}`,
-  },
+const client = new CuteMarketsClient({
+  apiKey: process.env.CUTEMARKETS_API_KEY,
 });
-if (!response.ok) {
-  throw new Error(`CuteMarkets chain request failed with ${response.status}`);
-}
-
-const payload = (await response.json()) as { results?: ChainRow[] };
-const ranked = (payload.results ?? [])
+const page = await client.options.chain(ticker, {
+  contract_type: "call",
+  limit: 100,
+});
+const ranked = (page.results ?? [])
   .filter((contract) => {
     const spread = spreadPct(contract);
     return spread !== null && spread <= 0.2 && (contract.open_interest ?? 0) >= 100;

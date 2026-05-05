@@ -1,9 +1,5 @@
-const apiKey = process.env.CUTEMARKETS_API_KEY;
-if (!apiKey) {
-  throw new Error("Set CUTEMARKETS_API_KEY=cm_... before running this recipe.");
-}
+import { CuteMarketsClient } from "cutemarkets-typescript";
 
-const baseUrl = process.env.CUTEMARKETS_BASE_URL ?? "https://api.cutemarkets.com";
 const underlying = process.env.CUTEMARKETS_UNDERLYING ?? "MSFT";
 const eventDate = process.env.CUTEMARKETS_EVENT_DATE ?? "2026-04-29";
 
@@ -37,34 +33,20 @@ function midpoint(contract: ChainRow): number | null {
   return mid > 0 ? mid : null;
 }
 
-async function requestJson<T>(path: string, params: Record<string, string> = {}): Promise<T> {
-  const url = new URL(`${baseUrl.replace(/\/+$/, "")}${path}`);
-  for (const [key, value] of Object.entries(params)) {
-    url.searchParams.set(key, value);
-  }
-  const response = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${apiKey}`,
-    },
-  });
-  if (!response.ok) {
-    throw new Error(`CuteMarkets request failed with ${response.status} for ${url.pathname}`);
-  }
-  return (await response.json()) as T;
-}
-
-const expirations = await requestJson<ExpirationsPayload>(`/v1/tickers/expirations/${encodeURIComponent(underlying)}/`);
+const client = new CuteMarketsClient({
+  apiKey: process.env.CUTEMARKETS_API_KEY,
+});
+const expirations = (await client.tickers.expirations(underlying)) as ExpirationsPayload;
 const expiry = (expirations.results ?? []).find((value) => value >= eventDate);
 if (!expiry) {
   throw new Error(`No expiry found on or after ${eventDate}`);
 }
 
-const chain = await requestJson<{ results?: ChainRow[] }>(`/v1/options/chain/${encodeURIComponent(underlying)}/`, {
+const chain = await client.options.chain(underlying, {
   expiration_date: expiry,
-  limit: "250",
+  limit: 250,
 });
-const rows = chain.results ?? [];
+const rows = (chain.results ?? []) as ChainRow[];
 const spot = rows[0]?.underlying_asset?.price;
 if (!spot) {
   throw new Error("Missing underlying spot price.");

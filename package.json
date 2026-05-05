@@ -6,9 +6,17 @@
   "type": "module",
   "scripts": {
     "ts:options-chain-scanner": "tsx typescript/options-chain-scanner/scanner.ts",
-    "ts:earnings-implied-move": "tsx typescript/earnings-implied-move/earnings_implied_move.ts"
+    "ts:earnings-implied-move": "tsx typescript/earnings-implied-move/earnings_implied_move.ts",
+    "check:typescript": "tsc -p tsconfig.json --noEmit",
+    "check:python": "python3 scripts/check_python_recipes.py",
+    "test": "npm run check:typescript && npm run check:python"
+  },
+  "dependencies": {
+    "cutemarkets-typescript": "^0.2.0"
   },
   "devDependencies": {
-    "tsx": "^4.20.6"
+    "@types/node": "^22.10.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.7.3"
   }
 }

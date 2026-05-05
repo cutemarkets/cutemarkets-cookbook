@@ -15,13 +15,15 @@ Quick links:
 - [historical-contract-reconstruction](python/historical-contract-reconstruction/README.md)
 - [earnings-implied-move](python/earnings-implied-move/README.md)
 - [quote-quality-filter](python/quote-quality-filter/README.md)
+- [quote-coverage-audit](python/quote-coverage-audit/README.md)
+- [earnings-event-study](python/earnings-event-study/README.md)
 
 ## TypeScript Recipes
 
 - [options-chain-scanner](typescript/options-chain-scanner/README.md)
 - [earnings-implied-move](typescript/earnings-implied-move/README.md)
 
-TypeScript recipes in this repo are intentionally self-contained so they can run before the TypeScript SDK is published. Once `cutemarkets-typescript` is live on npm, use the SDK for typed production integrations and keep the cookbook for small task-focused recipes.
+TypeScript recipes now use the published `cutemarkets-typescript` SDK directly. The cookbook stays focused on small workflow-level tasks, while the SDK remains the right place for typed production integrations.
 
 ## How To Use This Repo
 
@@ -31,3 +33,8 @@ TypeScript recipes in this repo are intentionally self-contained so they can run
 4. Follow the linked docs page when you need endpoint-level detail.
 
 The cookbook is meant to deliver value first. If you need fuller typing, pagination helpers, or more endpoints, move from the recipe to the SDK repo rather than rebuilding the API surface yourself.
+
+## Validation
+
+- `npm test` checks the TypeScript recipes with `tsc` and the Python recipes with a syntax/import harness.
+- [recipes.manifest.json](recipes.manifest.json) is the machine-readable recipe index for future automation.
