@@ -43,6 +43,20 @@
       "output_kind": "json_row"
     },
     {
+      "name": "stock-snapshot-watchlist",
+      "language": "python",
+      "path": "python/stock-snapshot-watchlist/stock_snapshot_watchlist.py",
+      "required_env": ["CUTEMARKETS_STOCKS_API_KEY"],
+      "output_kind": "console_csv"
+    },
+    {
+      "name": "paper-trading-agent-loop",
+      "language": "python",
+      "path": "python/paper-trading-agent-loop/paper_trading_agent_loop.py",
+      "required_env": ["CUTEMARKETS_PAPER_API_KEY", "CUTEMARKETS_STOCKS_API_KEY"],
+      "output_kind": "json_rows"
+    },
+    {
       "name": "options-chain-scanner",
       "language": "typescript",
       "path": "typescript/options-chain-scanner/scanner.ts",
@@ -55,6 +69,20 @@
       "path": "typescript/earnings-implied-move/earnings_implied_move.ts",
       "required_env": ["CUTEMARKETS_API_KEY"],
       "output_kind": "json_row"
+    },
+    {
+      "name": "stock-snapshot-watchlist",
+      "language": "typescript",
+      "path": "typescript/stock-snapshot-watchlist/stock_snapshot_watchlist.ts",
+      "required_env": ["CUTEMARKETS_STOCKS_API_KEY"],
+      "output_kind": "console_csv"
+    },
+    {
+      "name": "paper-trading-agent-loop",
+      "language": "typescript",
+      "path": "typescript/paper-trading-agent-loop/paper_trading_agent_loop.ts",
+      "required_env": ["CUTEMARKETS_PAPER_API_KEY", "CUTEMARKETS_STOCKS_API_KEY"],
+      "output_kind": "json_rows"
     }
   ]
 }

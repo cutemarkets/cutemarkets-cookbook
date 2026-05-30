@@ -1,6 +1,6 @@
-# Recipes for Using CuteMarkets Options Data in Python and TypeScript
+# Recipes for Using CuteMarkets Stocks, Options, and Paper Trading in Python and TypeScript
 
-`cutemarkets-cookbook` is a jobs-to-be-done repository. It does not duplicate the SDKs. Instead, it organizes runnable recipes around the workflows developers actually want to solve with options data.
+`cutemarkets-cookbook` is a jobs-to-be-done repository. It does not duplicate the SDKs. Instead, it organizes runnable recipes around the workflows developers actually want to solve with stocks data, options data, and paper trading.
 
 Quick links:
 
@@ -17,13 +17,17 @@ Quick links:
 - [quote-quality-filter](python/quote-quality-filter/README.md)
 - [quote-coverage-audit](python/quote-coverage-audit/README.md)
 - [earnings-event-study](python/earnings-event-study/README.md)
+- [stock-snapshot-watchlist](python/stock-snapshot-watchlist/README.md)
+- [paper-trading-agent-loop](python/paper-trading-agent-loop/README.md)
 
 ## TypeScript Recipes
 
 - [options-chain-scanner](typescript/options-chain-scanner/README.md)
 - [earnings-implied-move](typescript/earnings-implied-move/README.md)
+- [stock-snapshot-watchlist](typescript/stock-snapshot-watchlist/README.md)
+- [paper-trading-agent-loop](typescript/paper-trading-agent-loop/README.md)
 
-TypeScript recipes now use the published `cutemarkets-typescript` SDK directly. The cookbook stays focused on small workflow-level tasks, while the SDK remains the right place for typed production integrations.
+TypeScript recipes use the published `cutemarkets-typescript` SDK directly. The cookbook stays focused on small workflow-level tasks, while the SDK remains the right place for typed production integrations.
 
 ## How To Use This Repo
 

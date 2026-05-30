@@ -7,6 +7,8 @@
   "scripts": {
     "ts:options-chain-scanner": "tsx typescript/options-chain-scanner/scanner.ts",
     "ts:earnings-implied-move": "tsx typescript/earnings-implied-move/earnings_implied_move.ts",
+    "ts:stock-snapshot-watchlist": "tsx typescript/stock-snapshot-watchlist/stock_snapshot_watchlist.ts",
+    "ts:paper-trading-agent-loop": "tsx typescript/paper-trading-agent-loop/paper_trading_agent_loop.ts",
     "check:typescript": "tsc -p tsconfig.json --noEmit",
     "check:python": "python3 scripts/check_python_recipes.py",
     "test": "npm run check:typescript && npm run check:python"
